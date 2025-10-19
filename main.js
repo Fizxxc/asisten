@@ -1,3 +1,4 @@
+window.addEventListener("DOMContentLoaded", () => {
 // --- Helper umum ---
 function el(tag, cls = "") {
   const e = document.createElement(tag);
@@ -129,3 +130,4 @@ function showPiket() {
 
 loadSchedules();
 setInterval(checkJadwal, 60 * 1000);
+});
