@@ -269,10 +269,6 @@ refreshSchedules.addEventListener("click", loadAndRenderSchedules);
 })();
 
 
-// main.js
-import {
-  db, collection, addDoc, onSnapshot, query, orderBy, getDocs
-} from "./firebase-config.js";
 
 
 const botName = "Asisten Kelas 🤖";
