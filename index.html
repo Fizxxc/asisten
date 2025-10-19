@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Asisten Kelas — DigiCraft</title>
+
+  <!-- Tailwind CDN (untuk tampilan cepat & keren) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Firebase (modular v9+) -->
+  <script type="module" src="/firebase-config.js"></script>
+
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <div class="min-h-screen flex flex-col">
+    <header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-4 shadow-md">
+      <div class="container mx-auto flex items-center justify-between">
+        <h1 class="text-2xl font-bold">Asisten Kelas</h1>
+        <div class="flex items-center gap-3">
+          <span id="usernameBadge" class="bg-white/20 px-3 py-1 rounded-full text-sm"></span>
+          <button id="requestNotifBtn" class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded">Aktifkan Notif</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container mx-auto flex-1 p-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Left: Jadwal -->
+      <section class="col-span-2 bg-white rounded-2xl shadow p-5">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-semibold">Jadwal Pelajaran</h2>
+          <div class="flex gap-2">
+            <button id="refreshSchedules" class="px-3 py-1 rounded bg-indigo-100 text-indigo-700">Refresh</button>
+            <button id="openAddSchedule" class="px-3 py-1 rounded bg-green-100 text-green-700">Tambah Jadwal</button>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table id="scheduleTable" class="min-w-full text-sm">
+            <thead class="text-left text-gray-500">
+              <tr>
+                <th class="p-2">Hari</th>
+                <th class="p-2">Mapel</th>
+                <th class="p-2">Jam Mulai</th>
+                <th class="p-2">Jam Selesai</th>
+                <th class="p-2">Keterangan</th>
+              </tr>
+            </thead>
+            <tbody id="scheduleTbody"></tbody>
+          </table>
+        </div>
+
+        <hr class="my-6">
+
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-semibold">Jadwal Piket</h2>
+          <button id="openAddPicket" class="px-3 py-1 rounded bg-yellow-100 text-yellow-700">Tambah Piket</button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table id="picketTable" class="min-w-full text-sm">
+            <thead class="text-left text-gray-500">
+              <tr>
+                <th class="p-2">Hari</th>
+                <th class="p-2">Lokasi</th>
+                <th class="p-2">Jam</th>
+                <th class="p-2">Penanggung Jawab</th>
+              </tr>
+            </thead>
+            <tbody id="picketTbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Right: Chat Live + Status -->
+      <aside class="bg-white rounded-2xl shadow p-5 flex flex-col">
+        <h3 class="text-lg font-semibold mb-3">Chat Live</h3>
+
+        <div id="chatBox" class="flex-1 overflow-auto p-3 border border-gray-100 rounded mb-3 space-y-2">
+          <!-- messages appended here -->
+        </div>
+
+        <form id="chatForm" class="flex gap-2">
+          <input id="chatInput" required placeholder="Ketik pesan..." class="flex-1 px-3 py-2 border rounded" />
+          <button class="bg-indigo-600 text-white px-4 py-2 rounded">Kirim</button>
+        </form>
+
+        <hr class="my-4">
+
+        <div>
+          <h4 class="font-medium">Status Lain</h4>
+          <p id="nowClock" class="text-sm text-gray-500 mt-1">--:--</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="text-center p-4 text-sm text-gray-500">
+      Dibuat dengan ❤️ — Siap deploy ke Vercel
+    </footer>
+  </div>
+
+  <!-- Modal (simple) -->
+  <div id="modalRoot"></div>
+
+  <!-- Main logic -->
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
