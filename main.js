@@ -272,11 +272,7 @@ refreshSchedules.addEventListener("click", loadAndRenderSchedules);
 
 
 const botName = "Asisten Kelas 🤖";
-
-// --- Fungsi helper ---
-function escapeHtml(s) {
-  return s.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-}
+// --- Helper buat elemen ---
 function el(tag, cls = "") {
   const e = document.createElement(tag);
   if (cls) e.className = cls;
